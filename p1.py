@@ -88,16 +88,16 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-# تحديد المسار الكامل للملف
-file_path = 'C:/Users/MO/Desktop/Gradution Pro/healthcare_dataset.csv'
 
-# قراءة البيانات من ملف CSV
+file_path = ''
+
+
 df = pd.read_csv(file_path)
 
-# حساب متوسط القيم لكل عمود عدد
+
 mean_values = df.mean(numeric_only=True)
 
-# رسم بياني للأعمدة (Bar Plot)
+
 plt.figure(figsize=(15, 10))
 
 plt.subplot(3, 1, 1)
@@ -107,7 +107,7 @@ plt.xlabel('Columns')
 plt.ylabel('Mean Value')
 plt.xticks(rotation=45)
 
-# رسم بياني للخطوط (Line Plot)
+
 plt.subplot(3, 1, 2)
 for column in df.select_dtypes(include=['number']).columns:
     plt.plot(df[column], label=column)
@@ -116,14 +116,13 @@ plt.xlabel('Index')
 plt.ylabel('Value')
 plt.legend()
 
-# رسم بياني دائري (Pie Chart)
+
 plt.subplot(3, 1, 3)
-# استبدل 'ColumnName' باسم العمود الذي تريد استخدامه
+
 column_name = 'Test Results'  # استبدله باسم العمود المطلوب
 data = df[column_name].value_counts()
 plt.pie(data, labels=data.index, autopct='%1.1f%%', startangle=140)
 plt.title(f'Distribution of {column_name}')
 
-# عرض جميع الرسوم البيانية
 plt.tight_layout()
 plt.show()
